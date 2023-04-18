@@ -9,11 +9,13 @@ class AssociationNormalizingListener {
 
 	private $entityManager;
 
-	public function __construct(EntityManagerInterface $entityManager) {
+	public function __construct(EntityManagerInterface $entityManager)
+    {
 		$this->entityManager = $entityManager;
 	}
 
-	public function __invoke(ControllerArgumentsEvent $event) {
+	public function __invoke(ControllerArgumentsEvent $event)
+    {
 		$request = $event->getRequest();
 
 		if (
