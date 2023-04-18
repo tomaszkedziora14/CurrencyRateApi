@@ -21,12 +21,12 @@ class ApiTokenAuthenticator extends AbstractAuthenticator {
 
 	public function __construct(
 	    EntityManagerInterface $entityManager
-    ){
+    	){
 		$this->entityManager = $entityManager;
 	}
 
 	public function supports(Request $request): ?bool
-    {
+    	{
 		return $request->getMethod() !== 'GET';
 	}
 
