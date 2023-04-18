@@ -15,14 +15,14 @@ class UserListener {
 
 	public function __construct(
 	    UserPasswordHasherInterface $hasher
-    ) {
+    	) {
 		$this->hasher = $hasher;
 	}
 
 	public function prePersist(
 	    User $user,
         LifecycleEventArgs $args
-    ) {
+    	) {
 		$password = $user->getPassword();
 		$password = $this->encodePassword($user, $password);
 		$user->setPassword($password);
@@ -33,7 +33,7 @@ class UserListener {
 	public function preUpdate(
 	    User $user,
         PreUpdateEventArgs $args
-    ) {
+    	) {
 		if ($args->hasChangedField('password')) {
 			$password = $args->getNewValue('password');
 			$password = $this->encodePassword($user, $password);
@@ -47,7 +47,7 @@ class UserListener {
 	private function encodePassword(
 	    User $user,
         string $password
-    ) {
+   	) {
 		return $this->hasher->hashPassword($user, $password);
 	}
 }
