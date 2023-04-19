@@ -9,7 +9,8 @@ class TokenFactory {
 	/**
 	 * @return string
 	 */
-	public static function factory(): string {
+	public static function factory(): string 
+	{
 		return implode(
 			'-',
 			str_split(
