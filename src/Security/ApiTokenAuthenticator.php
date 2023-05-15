@@ -30,16 +30,19 @@ class ApiTokenAuthenticator extends AbstractAuthenticator {
 		return $request->getMethod() !== 'GET';
 	}
 
-	public function authenticate(Request $request): PassportInterface {
+	public function authenticate(Request $request): PassportInterface 
+	{
 		$apiToken = $request->headers->get('X-AUTH-TOKEN');
 		if ($apiToken) {
 			$user = $this->entityManager
 				->getRepository(User::class)
 				->findOneBy(['apiToken' => $apiToken]);
+			
 			if ($user) {
 				return new SelfValidatingPassport(new UserBadge($user->getEmail()), []);
 			}
 		}
+		
 		throw new CustomUserMessageAuthenticationException(
 			'You have provided an invalid API token. In order to perform that action, please provide a valid API token.'
 		);
