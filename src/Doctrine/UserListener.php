@@ -21,7 +21,7 @@ class UserListener {
 
 	public function prePersist(
 	    User $user,
-        LifecycleEventArgs $args
+            LifecycleEventArgs $args
     	) {
 		$password = $user->getPassword();
 		$password = $this->encodePassword($user, $password);
@@ -32,7 +32,7 @@ class UserListener {
 
 	public function preUpdate(
 	    User $user,
-        PreUpdateEventArgs $args
+            PreUpdateEventArgs $args
     	) {
 		if ($args->hasChangedField('password')) {
 			$password = $args->getNewValue('password');
@@ -46,7 +46,7 @@ class UserListener {
 
 	private function encodePassword(
 	    User $user,
-        string $password
+            string $password
    	) {
 		return $this->hasher->hashPassword($user, $password);
 	}
